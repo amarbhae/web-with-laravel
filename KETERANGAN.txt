@@ -4,4 +4,4 @@ KELAS :	06SISE001
 
 
 pak mohon maaf saya terkendala saat implementasinya karena ada perbedaan yang di video pembelajaran yang di berikan
-bapak dengan yang saya kerjaan di file env nya. Izin saya akan mengerjakan dan melampirkan tugasnya di repository ini
+bapak dengan yang saya kerjaan di file env nya sehingga error saat melanjutkannya. Izin saya akan mengerjakan dan melampirkan tugasnya di repository ini
