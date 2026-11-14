@@ -1,0 +1,92 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ProductController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //tampilkan product:
+        $products = \App\Models\Product::all();
+        return view('products.index', compact('products'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //menyimpan data product baru ke database
+        $request->validate(
+            [
+            'nama_barang' => 'required',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|numeric|min:0',
+            'deskripsi' => 'required|string'
+            ]
+        );
+ 
+        \App\Models\Product::create($request->all());
+        return redirect()->route('products.index')->with('success', 'Barang berhasil ditambahkan.');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //update data product di database
+        $request->validate([
+            'nama_barang' => 'required',
+            'harga' => 'required|numeric|min:0',
+            'stok' => 'required|numeric|min:0',
+            'deskripsi' => 'required|string'
+        ]
+        );
+        //cari bedarsarkan id
+
+        $product = \App\Models\Product::findOrFail($id);
+        $product->update($request->all());
+        return redirect()->route('products.index')->with('success', 'Barang berhasil diperbarui.');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //hapus data berdasarkan id
+        $product = \App\Models\Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Barang berhasil dihapus.');
+    }
+}
